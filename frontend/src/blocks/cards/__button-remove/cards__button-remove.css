@@ -1,0 +1,17 @@
+.cards__button-remove {
+	border: none;
+	outline: none;
+	background-image: url(../../../images/trash.svg);
+	width: 18px;
+	height: 19px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+.cards__button-like:hover {
+	opacity: 0.5;
+}

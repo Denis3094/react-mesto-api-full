@@ -1,0 +1,12 @@
+.tooltip {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, .5);
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .5s ease-out, visibility .2s ease-out;
+}

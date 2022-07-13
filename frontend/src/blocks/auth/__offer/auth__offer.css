@@ -1,0 +1,10 @@
+.auth__offer {
+    text-align: center;
+    color: #FFF;
+    margin: 15px 0 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.auth__offer:hover {
+    opacity: 0.6;
+}

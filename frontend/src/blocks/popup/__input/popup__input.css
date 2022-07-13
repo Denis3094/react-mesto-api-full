@@ -1,0 +1,19 @@
+.popup__input {
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	width: 100%;
+	padding: 0 0 9px 0;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.2;
+	color: #000;
+	outline: none;
+}
+
+.popup__input:not(:first-child) {
+	margin-top: 30px;
+}
+
+.popup__input::placeholder {
+	color: #C4C4C4;
+}

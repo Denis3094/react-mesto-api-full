@@ -1,0 +1,11 @@
+.tooltip__container {
+    width: 430px;
+    min-height: 330px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: fixed;
+    top: calc(100%/2 - 165px);
+    left: calc(100%/2 - 215px);
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}

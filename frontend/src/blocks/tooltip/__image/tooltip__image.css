@@ -1,0 +1,6 @@
+.tooltip__image {
+    width: 120px;
+    height: 120px;
+    background-image: url(../../../images/success.svg);
+    margin: 60px auto 32px;
+}

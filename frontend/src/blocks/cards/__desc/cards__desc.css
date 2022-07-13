@@ -1,0 +1,11 @@
+.cards__desc {
+	background-color: #fff;
+	padding: 25px 15px 31px 21px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-sizing: border-box;
+	height: 79px;
+}
