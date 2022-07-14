@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const { mongoose } = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { Joi, celebrate, errors } = require('celebrate');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -10,6 +12,7 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { handleError } = require('./middlewares/error');
 const { regExpLink } = require('./constants/regexp');
+const { allowedCors } = require('./constants/cors');
 const NotFound = require('./constants/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -27,6 +30,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
+
+app.use(cors({
+  origin: allowedCors,
+  credentials: true,
+}));
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
