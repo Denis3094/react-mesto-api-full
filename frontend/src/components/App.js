@@ -177,7 +177,8 @@ function App() {
     setIsLoading(true);
     return register(password, email)
       .then((res) => {
-        if (res.data._id) {
+        console.log(`res ${res}`)
+        if (res._id) {
           setIsSignup(true);
           setIsInfoTooltipOpen(true);
           setTimeout(() => {
