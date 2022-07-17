@@ -10,14 +10,14 @@ const userSchema = new mongoose.Schema({
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
     minlength: 2, // минимальная длина имени — 2 символа
     maxlength: 30, // а максимальная — 30 символов
-    default: 'Жак-Ив Кусто',
+    default: 'Your Name?',
   },
   about: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 30,
-    default: 'Исследователь',
+    default: 'tell us about yourself',
   },
   avatar: {
     type: String,
@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: (value) => regExpLink.test(value),
     },
-    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+    default: 'https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1',
   },
   email: {
     type: String,
