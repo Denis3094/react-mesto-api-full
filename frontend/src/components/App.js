@@ -235,7 +235,7 @@ function App() {
   }
 
   function handleLogout() {
-    return logout(email)
+    return logout()
         .then(() => {
           localStorage.removeItem("email");
           setUserData('');
