@@ -15,7 +15,7 @@ import Login from "./Login";
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { authorize, register } from "../utils/auth";
+import { authorize, register, logout } from "../utils/auth";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -204,10 +204,12 @@ function App() {
     return authorize(password, email)
       .then((res) => {
         console.log(res);
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
+        if (res.email) {
+          //Добавляем в lS, проверяем нужно или нет делать запрос по users/me
+          localStorage.setItem("email", res.email);
           checkToken();
         }
+        checkToken();
       })
       .catch((err) => {
         console.log(err.message);
@@ -219,25 +221,27 @@ function App() {
   }
 
   function checkToken() {
-    if (localStorage.getItem("jwt")) {
-      let token = localStorage.getItem("jwt");
+    // Проверяем условие нужно ли делать запрос по users/me
+    if (localStorage.getItem("email")) {
       auth
-        .getContent(token)
+        .getContent()
         .then((res) => {
-          const { _id, email } = res.data;
-          console.log("res.data", res.data);
-          setUserData({ _id, email });
+          setUserData(res.email);
           setLoggedIn(true);
         })
         .catch((err) => console.log(err.message));
     }
   }
 
-  function handleLogout() {
-    localStorage.removeItem("jwt");
-    setUserData({ _id: "", email: "" });
-    setLoggedIn(false);
-    history.push("/sign-in");
+  function handleLogout(email) {
+    return logout(email)
+        .then(() => {
+          localStorage.removeItem("email");
+          setUserData('');
+          setLoggedIn(false);
+          history.push("/sign-in");
+        })
+        .catch(err => console.log(err.message));
   }
 
   // Валидация форм

@@ -1,4 +1,4 @@
-export const baseUrl = 'https://auth.nomoreparties.co';
+export const baseUrl = 'https://api.idenis.students.nomoredomains.xyz';
 
 function checkResponse(res) {
   if(res.ok) {
@@ -24,6 +24,7 @@ export function register(password, email) {
 export function authorize(password, email) {
   return fetch(`${baseUrl}/signin`, {
     method: 'POST',
+    credentials: 'include',
     headers: {"Content-Type": "application/json" },
     body: JSON.stringify({password, email})
   })
@@ -33,10 +34,20 @@ export function authorize(password, email) {
 export function getContent(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${token}`
+      // "Authorization" : `Bearer ${token}`
     }
   })
       .then(res => checkResponse(res))
+}
+
+export function logout(email) {
+  return fetch(`${baseUrl}/signout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  })
 }
