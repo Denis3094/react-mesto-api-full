@@ -37,7 +37,7 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
-        throw new NotFound('У вас нет прав для удаления карточки.');
+        throw new NotFound('Данной карточки не существует.');
       } else if (card.owner.toString() !== req.user._id) {
         next(new Forbidden('У вас нет прав для удаления карточки.'));
       } else {
@@ -46,7 +46,7 @@ module.exports.deleteCard = (req, res, next) => {
       }
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
         next(new BadRequest('Переданы некорректные данные при удалении карточки.'));
       } else {
         next(err);
